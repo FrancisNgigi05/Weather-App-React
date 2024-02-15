@@ -10,6 +10,8 @@ import rain_icon from "./assets/rain.png"
 import storm_icon from "./assets/storm.png"
 import scattered_clouds_icon from "./assets/clouds.png"
 import snow_icon from "./assets/snow.png"
+import LoginPage from "./Login";
+import {useNavigate} from "react-router-dom";
 
 function WeatherApp() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -100,8 +102,15 @@ function WeatherApp() {
         setCity(value);
     }
 
+    const history = useNavigate()
+
+    function login() {
+        history("/login")
+    }
+
+
     return (
-        <div className="container">
+        <div className={isDarkMode ? "container-Dark" : "container"}>
             <div className="top-bar">
 
                 <input type="text" className="cityInput" placeholder="search" value={city} onChange={(e) => handleChange(e.target.value)}/>
@@ -110,8 +119,14 @@ function WeatherApp() {
                     <img src={search_icon} alt=""/>
                 </div>
 
-                <div className={"Container" + (isDarkMode ? "dark" : "")}>
+                <div className="button">
                     <button onClick={ handleDarkMOde }> {isDarkMode ? "Dark" : "Light"} Mode </button>
+                </div>
+
+                <div className="button">
+                    <button onClick={login}>
+                        Logout
+                    </button>
                 </div>
 
             </div> 
@@ -120,11 +135,11 @@ function WeatherApp() {
                 <img src={weatherIcon} alt=""/>
             </div>
 
-            <div className="weather-temp">{weatherData.main.temp}°C</div>
+            <div className={isDarkMode ? "weather-temp-dark" : "weather-temp"}>{weatherData.main.temp}°C</div>
 
-            <div className="weather-location">{weatherData.name}</div>
+            <div className={isDarkMode ? "weather-location-dark" : "weather-location"}>{weatherData.name}</div>
 
-            <div className="data-container">
+            <div className={isDarkMode ? "data-container-dark" : "data-container"}>
 
                 <div className="element">
                     <img src={humidity_icon} alt="" className="icon" />

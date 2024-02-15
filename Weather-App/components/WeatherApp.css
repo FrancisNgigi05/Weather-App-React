@@ -1,4 +1,4 @@
-body {
+body{
     background-color: #3b2f80;
 }
 
@@ -12,14 +12,22 @@ button {
     cursor: pointer;
 }
 
-
 .container {
     width: 607px;
     height: 829px;
     margin: auto;
     margin-top: 75px;
     border-radius: 12px;
-    background-image: linear-gradient(180deg, #130754 0%, #3b2f80 100%);
+    background-image: linear-gradient(200deg, #130754 0%, #3b2f80 100%);
+}
+
+.container-dark {
+    width: 607px;
+    height: 829px;
+    margin: auto;
+    margin-top: 75px;
+    border-radius: 12px;
+    background-image: linear-gradient(180deg, black 0%, black 50%);
 }
 
 .top-bar {
@@ -59,12 +67,29 @@ button {
     margin-top: 29px;   
 }
 
+.weather-image-dark{
+    display: flex;
+    justify-content: center;
+    margin-top: 29px;   
+    background-color: black;
+}
+
 .weather-temp {
     display: flex;
     justify-content: center;
     color: white;
     font-size:  120px;
     font-weight: 400;
+    /* background: black; */
+}
+
+.weather-temp-dark {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size:  120px;
+    font-weight: 400;
+    background: black;
 }
 
 .weather-location {
@@ -73,9 +98,26 @@ button {
     color: white;
     font-size: 60px;
     font-weight: 400;
+    /* background-color: black; */
+}
+
+.weather-location-dark {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 60px;
+    font-weight: 400;
+    background-color: black;
 }
 
 .data-container {
+    margin-top: 50px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.data-container-dark {
     margin-top: 50px;
     color: white;
     display: flex;
