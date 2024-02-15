@@ -4,8 +4,15 @@ import search_icon from "./assets/search.png";
 import cloud_icon from "./assets/cloud.png";
 import humidity_icon from "./assets/humidity.png";
 import wind_icon from "./assets/wind.png";
+import clear_icon from"./assets/clear.png"
+import drizzle_icon from "./assets/drizzle.png"
+import rain_icon from "./assets/rain.png"
+import storm_icon from "./assets/storm.png"
+import scattered_clouds_icon from "./assets/clouds.png"
+import snow_icon from "./assets/snow.png"
 
 function WeatherApp() {
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const [city, setCity] = useState("Nairobi");
     const [weatherData, setWeatherData] = useState({
         main: {
@@ -17,6 +24,12 @@ function WeatherApp() {
             speed: null
         }
     });
+    const [weatherIcon, setWeatherIcon] = useState(cloud_icon);
+    
+    function handleDarkMOde() {
+        setIsDarkMode((isDarkMode) => !isDarkMode);
+    }
+
     let api_key = "ff9cdd77c99f4fbfd668da113208ab6a";
 
     useEffect(() => {
@@ -33,6 +46,40 @@ function WeatherApp() {
                 if (data.cod === 200) {
                     setWeatherData(data);
                 }
+
+                if(data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
+                    setWeatherIcon(clear_icon);
+                }
+
+                if (data.weather[0].icon === "02d" || data.weather[0].icon === "02n") {
+                    setWeatherIcon(cloud_icon);
+                }
+
+                if (data.weather[0].icon === "10d" || data.weather[0].icon === "10n") {
+                    setWeatherIcon(drizzle_icon);
+                }
+
+                if (data.weather[0].icon === "09d" || data.weather[0].icon === "09n") {
+                    setWeatherIcon(rain_icon);
+                }
+
+                if (data.weather[0].icon === "11d" || data.weather[0].icon === "11n") {
+                    setWeatherIcon(storm_icon);
+                }
+
+                if(data.weather[0].icon === "03d" || data.weather[0].icon === "03n") {
+                    setWeatherIcon(scattered_clouds_icon);
+                }
+
+                if (data.weather[0].icon === "13d" || data.weather[0].icon === "13n") {
+                    setWeatherIcon(snow_icon);
+                }
+
+                if(data.weather[0].icon === "04d" || data.weather[0].icon === "04n") {
+                    setWeatherIcon(scattered_clouds_icon);
+                }
+
+                console.log("Weather icon", data.weather[0].icon);               
             })
             .catch(error => {
                 console.error("Error fetching the data", error);
@@ -56,32 +103,51 @@ function WeatherApp() {
     return (
         <div className="container">
             <div className="top-bar">
+
                 <input type="text" className="cityInput" placeholder="search" value={city} onChange={(e) => handleChange(e.target.value)}/>
+
                 <div className="search-icon" onClick={() => fetchData(city)}>
                     <img src={search_icon} alt=""/>
                 </div>
+
+                <div className={"Container" + (isDarkMode ? "dark" : "")}>
+                    <button onClick={ handleDarkMOde }> {isDarkMode ? "Dark" : "Light"} Mode </button>
+                </div>
+
             </div> 
+
             <div className="weather-image">
-                <img src={cloud_icon} alt=""/>
+                <img src={weatherIcon} alt=""/>
             </div>
+
             <div className="weather-temp">{weatherData.main.temp}°C</div>
+
             <div className="weather-location">{weatherData.name}</div>
+
             <div className="data-container">
+
                 <div className="element">
                     <img src={humidity_icon} alt="" className="icon" />
+
                     <div className="data">
                         <div className="humidity-percent">{weatherData.main.humidity}%</div>
                         <div className="text">Humidity</div>
                     </div>
+
                 </div>
+
                 <div className="element">
                     <img src={wind_icon} alt="" className="icon" />
+
                     <div className="data">
                         <div className="wind-speed">{weatherData.wind.speed} km/hr</div>
                         <div className="text">Wind Speed</div>
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     );
 }

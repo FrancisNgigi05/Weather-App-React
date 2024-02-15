@@ -2,6 +2,17 @@ body {
     background-color: #3b2f80;
 }
 
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 78px;
+    height: 78px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
 .container {
     width: 607px;
     height: 829px;
