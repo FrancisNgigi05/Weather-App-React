@@ -31,24 +31,24 @@ function WeatherApp() {
     function handleDarkMOde() {
         setIsDarkMode((isDarkMode) => !isDarkMode);
     }
-
+    
     let api_key = "ff9cdd77c99f4fbfd668da113208ab6a";
-
+    
     useEffect(() => {
         fetchData(city);
     }, []);
-
+    
     // Fetching data from the api
     function fetchData(city) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`)
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data);
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data);
                 // if cod is 200 means response is good
                 if (data.cod === 200) {
                     setWeatherData(data);
                 }
-
+                
                 if(data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
                     setWeatherIcon(clear_icon);
                 }
@@ -64,7 +64,7 @@ function WeatherApp() {
                 if (data.weather[0].icon === "09d" || data.weather[0].icon === "09n") {
                     setWeatherIcon(rain_icon);
                 }
-
+                
                 if (data.weather[0].icon === "11d" || data.weather[0].icon === "11n") {
                     setWeatherIcon(storm_icon);
                 }
@@ -97,18 +97,18 @@ function WeatherApp() {
                 });
             });
     }
-
+        
     function handleChange(value) {
         setCity(value);
     }
-
+        
     const history = useNavigate()
-
+        
     function login() {
         history("/login")
     }
-
-
+    
+    
     return (
         <div className={isDarkMode ? "container-Dark" : "container"}>
             <div className="top-bar">
