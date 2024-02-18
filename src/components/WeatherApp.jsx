@@ -8,10 +8,11 @@ import clear_icon from"./assets/clear.png"
 import drizzle_icon from "./assets/drizzle.png"
 import rain_icon from "./assets/rain.png"
 import storm_icon from "./assets/storm.png"
-import scattered_clouds_icon from "./assets/clouds.png"
+import scattered_clouds_icon from "./assets/cloud.png"
 import snow_icon from "./assets/snow.png"
-import LoginPage from "./Login";
 import {useNavigate} from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { database } from "../firebase/config";
 
 function WeatherApp() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -102,12 +103,19 @@ function WeatherApp() {
         setCity(value);
     }
         
+    // function login() {
+    //     history("/login")
+    // }
+    
     const history = useNavigate()
         
-    function login() {
-        history("/login")
-    }
     
+    // Function that will handle SigningOut
+    function handleSignOut() {
+        signOut(database).then((value) => {
+            history('/login');
+        });
+    }
     
     return (
         <div className={isDarkMode ? "container-Dark" : "container"}>
@@ -124,8 +132,8 @@ function WeatherApp() {
                 </div>
 
                 <div className="button">
-                    <button onClick={login}>
-                        Logout
+                    <button onClick={handleSignOut}>
+                        LogOut
                     </button>
                 </div>
 

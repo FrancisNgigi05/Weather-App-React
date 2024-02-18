@@ -45,3 +45,28 @@ input[type="password"] {
 .login-btn:hover {
   background-color: #45a049;
 }
+
+.sign {
+    display: flex;
+    justify-content: center;
+}
+
+.signUp {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.signIn {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
