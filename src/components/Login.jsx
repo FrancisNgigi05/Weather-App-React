@@ -47,8 +47,8 @@ function LoginPage() {
     return (
     <div className="login">
         <div className="sign">
-            <div className="signUp">SignUp</div>
-            <div className="signIn">SignIn</div>
+            <div className="signUp" onClick={() => setLogin(false)}>SignUp</div>
+            <div className="signIn" onClick={() => setLogin(true)}>SignIn</div>
         </div>
 
         <h1>{login ? "SignIn" : "SignUp"}</h1>
