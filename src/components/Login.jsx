@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom"
 import { database } from "../firebase/config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // import { data } from "autoprefixer";
-import Button from 'react-bootstrap/Button';
 
 function LoginPage() {
     const [login, setLogin] = useState(false);
